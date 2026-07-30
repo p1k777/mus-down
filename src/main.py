@@ -2,6 +2,14 @@ import argparse
 from yt_dlp import YoutubeDL
 from mutagen.id3 import ID3, TIT2, TPE1
 
+
+
+
+def finish(code: int = 0):
+    print("[FINISHED]")
+    exit(code)
+
+
 def set_metainfo(path: str, title: str, arists: list[str]):
     tags = ID3(path)
 
@@ -32,12 +40,12 @@ YDL_OPTS = {
     ],
 }
 
-def work():
-    url = input("url: ")
+def download(url: str = ""):
+    if not url:
+        url = input("url: ")
 
-    if url.lower() == "q":
-        print("[FINISHED]")
-        exit(0)
+        if url.lower() == "q":
+            finish()
 
     print(f'Got "{url}"')
 
@@ -55,25 +63,25 @@ def work():
 
 
 def main():
-    parser = argparse.ArgumentParser("Загрузка треков")
+    parser = argparse.ArgumentParser()
 
     parser.add_argument(
         "-u",
         "--url",
-        help="URL трека для загрузки (пока только Youtube Music)",
+        help="Track URL (Youtube Music)",
         default=""
     )
 
     parser.add_argument(
         "--input",
-        help="Путь к файлу с перечисленными URL (по одному в строке)",
+        help="URLs file path (1 line = 1 url)",
         default=""
     )
 
     parser.add_argument(
         "-o",
         "--output",
-        help="Папка для сохранения заргуженных композиций",
+        help="Downloads folder",
         default="downloads"
     )
 
@@ -82,12 +90,22 @@ def main():
     YDL_OPTS = args.output
 
     if (args.url):
-        pass
+        print(args.url)
+        download(args.url)
+        finish()
     elif args.input:
-        pass
+        lines = []
+        with open(args.input) as file:
+            lines = file.readlines()
+
+        for url in lines:
+            url = url.strip()
+            download(url)
+
+        finish()
     else:
         while True:
-            work()
+            download()
 
 
 main()
