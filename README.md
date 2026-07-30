@@ -10,7 +10,7 @@ An incredibly lightweight CLI utility for downloading music from the Internet. S
 
 They are installed using `pip`:
 ```
-$ pip install [lib]
+pip install [lib]
 ```
 
 ## Usage
@@ -18,7 +18,7 @@ $ pip install [lib]
 The program is not pre-compiled, there is only the source code, but the use is not difficult (you can use the standard python interpreter)
 
 ```
-$ python main.py [-h] [-u URL] [--input INPUT] [-o OUTPUT]
+python main.py [-h] [-u URL] [--input INPUT] [-o OUTPUT]
 ```
 **Options:**
 - `-h`, `--help` – display 'help' information
@@ -32,16 +32,16 @@ $ python main.py [-h] [-u URL] [--input INPUT] [-o OUTPUT]
 
 ### Only one URL
 ```
-$ python main.py -u 'https://music.youtube.com/watch?v=oxv5WWJ0oAo&si=2TJkSPZGvG5l9Gx8'
+python main.py -u 'https://music.youtube.com/watch?v=oxv5WWJ0oAo&si=2TJkSPZGvG5l9Gx8'
 ```
 or
 ```
-$ python main.py --url 'https://music.youtube.com/watch?v=oxv5WWJ0oAo&si=2TJkSPZGvG5l9Gx8'
+python main.py --url 'https://music.youtube.com/watch?v=oxv5WWJ0oAo&si=2TJkSPZGvG5l9Gx8'
 ```
 
 ### List of URLs
 ```
-$ python main.py --input downloads/urls.txt
+python main.py --input downloads/urls.txt
 ```
 `urls.txt`:
 ```
@@ -52,6 +52,6 @@ https://music.youtube.com/watch?v=DmOaxyilm4g&si=HwZd-8O-fcPu08al
 
 ### Interactive mode
 ```
-$ python main.py
+python main.py
 ```
 then just insert URL into field URL!
