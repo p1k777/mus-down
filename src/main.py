@@ -1,3 +1,4 @@
+import argparse
 from yt_dlp import YoutubeDL
 from mutagen.id3 import ID3, TIT2, TPE1
 
@@ -53,6 +54,40 @@ def work():
 
 
 
-while True:
-    work()
-    
+def main():
+    parser = argparse.ArgumentParser("Загрузка треков")
+
+    parser.add_argument(
+        "-u",
+        "--url",
+        help="URL трека для загрузки (пока только Youtube Music)",
+        default=""
+    )
+
+    parser.add_argument(
+        "--input",
+        help="Путь к файлу с перечисленными URL (по одному в строке)",
+        default=""
+    )
+
+    parser.add_argument(
+        "-o",
+        "--output",
+        help="Папка для сохранения заргуженных композиций",
+        default="downloads"
+    )
+
+    args = parser.parse_args()
+
+    YDL_OPTS = args.output
+
+    if (args.url):
+        pass
+    elif args.input:
+        pass
+    else:
+        while True:
+            work()
+
+
+main()
