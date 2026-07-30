@@ -1,5 +1,6 @@
 import argparse
 from yt_dlp import YoutubeDL
+from yt_dlp.utils import DownloadError
 from mutagen.id3 import ID3, TIT2, TPE1
 
 
@@ -49,17 +50,29 @@ def download(url: str = ""):
 
     print(f'Got "{url}"')
 
-    with YoutubeDL(YDL_OPTS) as ydl:
-        info = ydl.extract_info(url, download=True)
+    try:
+        with YoutubeDL(YDL_OPTS) as ydl:
+            info = ydl.extract_info(url, download=True)
+            keys = info.keys()
 
-        title = info["title"]
-        artists = info["creators"]
-        path = info["requested_downloads"][0]["filepath"]
+            title = "NO NAME"
+            if ("title" in keys): title = info["title"]
+            elif ("name" in keys): title = info["name"]
 
-        set_metainfo(path, title, artists)
+            artists = ["NO ARTISTS"]
+            if ("creators" in keys): artists = info["creators"]
+            elif ("artists" in keys): artists = info["artists"]
 
-        print(f'"{title}" {artists} -> {path}')
-        print("="*200)
+            path = info["requested_downloads"][0]["filepath"]
+
+            set_metainfo(path, title, artists)
+
+            print(f'"{title}" {artists} -> {path}')
+            print("="*200)
+    except DownloadError as e:
+        print("Can not download this track due to error, try another service or try again later")
+    except Exception as e:
+            print(f'Error occured: "{str(e)}"')
 
 
 
@@ -69,7 +82,7 @@ def main():
     parser.add_argument(
         "-u",
         "--url",
-        help="track URL (Youtube Music)",
+        help="track URL (Youtube Music, SoundCloud)",
         default=""
     )
 
@@ -88,25 +101,28 @@ def main():
 
     args = parser.parse_args()
 
-    YDL_OPTS = args.output
+    YDL_OPTS["outtmpl"] = f'{args.output}/%(title)s.%(ext)s'
 
-    if (args.url):
-        print(args.url)
-        download(args.url)
-        finish()
-    elif args.input:
-        lines = []
-        with open(args.input) as file:
-            lines = file.readlines()
+    try:
+        if (args.url):
+            print(args.url)
+            download(args.url)
+            finish()
+        elif args.input:
+            lines = []
+            with open(args.input) as file:
+                lines = file.readlines()
 
-        for url in lines:
-            url = url.strip()
-            download(url)
+            for url in lines:
+                url = url.strip()
+                download(url)
 
-        finish()
-    else:
-        while True:
-            download()
+            finish()
+        else:
+            while True:
+                download()
+    except Exception as e:
+        print(f'Error occured: "{str(e)}"')
 
 
 main()
