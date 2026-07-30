@@ -44,7 +44,7 @@ def download(url: str = ""):
     if not url:
         url = input("URL: ")
 
-        if url.lower() == "q":
+        if url.lower() == "q" or url.lower() == "quit":
             finish()
 
     print(f'Got "{url}"')
