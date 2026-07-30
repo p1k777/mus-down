@@ -42,7 +42,7 @@ YDL_OPTS = {
 
 def download(url: str = ""):
     if not url:
-        url = input("url: ")
+        url = input("URL: ")
 
         if url.lower() == "q":
             finish()
@@ -59,6 +59,7 @@ def download(url: str = ""):
         set_metainfo(path, title, artists)
 
         print(f'"{title}" {artists} -> {path}')
+        print("="*200)
 
 
 
@@ -68,7 +69,7 @@ def main():
     parser.add_argument(
         "-u",
         "--url",
-        help="Track URL (Youtube Music)",
+        help="track URL (Youtube Music)",
         default=""
     )
 
@@ -81,7 +82,7 @@ def main():
     parser.add_argument(
         "-o",
         "--output",
-        help="Downloads folder",
+        help="downloads folder",
         default="downloads"
     )
 
