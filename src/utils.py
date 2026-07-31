@@ -92,7 +92,7 @@ class VkSource:
         with YoutubeDL(YDL_OPTS) as ydl:
             info = ydl.extract_info(url, download=True)
             return DownloadResult(
-                title=info["title"],
+                title=info["track"],
                 artists=info["artists"],
                 path=info["requested_downloads"][0]["filepath"]
             )

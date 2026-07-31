@@ -46,7 +46,7 @@ def main():
     parser.add_argument(
         "-u",
         "--url",
-        help="track URL (Youtube Music, SoundCloud)",
+        help="track URL (Youtube Music, SoundCloud, VK)",
         default=""
     )
 

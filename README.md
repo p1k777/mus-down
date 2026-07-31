@@ -24,7 +24,7 @@ python main.py [-h] [-u URL] [--input INPUT] [-o OUTPUT]
 ```
 **Options:**
 - `-h`, `--help` – display 'help' information
-- `-u`, `--url` – set *only one* track URL (Youtube Music, SoundCloud)
+- `-u`, `--url` – set *only one* track URL (Youtube Music, SoundCloud, VK)
 - `--input` – set file path that must contain URLs (1 line = 1 url)
 - `-o, --output` – set downloads folder
 
