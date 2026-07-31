@@ -4,7 +4,11 @@ from yt_dlp.utils import DownloadError
 import utils
 
 
-DOWNLOADERS: list[utils.BaseSource] = [utils.YoutubeSource(), utils.SoundcloudSource()]
+DOWNLOADERS: list[utils.BaseSource] = [
+    utils.YoutubeSource(),
+    utils.SoundcloudSource(),
+    utils.VkSource()
+]
 
 
 def finish(code: int = 0):

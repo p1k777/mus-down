@@ -82,3 +82,17 @@ class SoundcloudSource:
                 artists=info["artists"],
                 path=info["requested_downloads"][0]["filepath"]
             )
+
+
+class VkSource:
+    def supports(self, url: str) -> bool:
+        return ("vk.ru" in url)
+
+    def download(self, url: str) -> DownloadResult:
+        with YoutubeDL(YDL_OPTS) as ydl:
+            info = ydl.extract_info(url, download=True)
+            return DownloadResult(
+                title=info["title"],
+                artists=info["artists"],
+                path=info["requested_downloads"][0]["filepath"]
+            )
