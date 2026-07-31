@@ -4,6 +4,8 @@ An incredibly lightweight CLI utility for downloading music from the Internet. S
 
 ## Requirements
 
+- `dataclasses`
+- `typing`
 - `argparse`
 - `yt-dlp`
 - `mutagen`
