@@ -3,3 +3,4 @@
 build
 *.tmp
 downloads
+__pycache__
