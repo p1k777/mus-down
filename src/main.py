@@ -26,6 +26,9 @@ def download(url: str = ""):
             if (downloader.supports(url)):
                 res = downloader.download(url)
                 utils.set_metainfo(res)
+                print("[DOWNLOAD COMPLETE]:", res.title, "->", res.path)
+                return
+        print("URL is not supported yet :(")
     except DownloadError as e:
         print("Can not download this track due to error, try another service or try again later")
     except Exception as e:
