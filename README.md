@@ -1,6 +1,6 @@
 # MusDown
 
-An incredibly lightweight CLI utility for downloading music from the Internet. So far, only Youtube Music and SoundCloud are supported (Spotify is not planned)
+An incredibly lightweight CLI utility for downloading music from the Internet. So far, only Youtube Music, SoundCloud and VK music are supported[^1] (Spotify is not planned)
 
 ## Requirements
 
@@ -55,3 +55,5 @@ https://music.youtube.com/watch?v=DmOaxyilm4g&si=HwZd-8O-fcPu08al
 python main.py
 ```
 then just insert URL into field URL!
+
+[^1]: An unofficial unstable fork was used for VK
