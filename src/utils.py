@@ -51,9 +51,9 @@ def set_metainfo(result: DownloadResult):
 
 
 
-class BaseSource(Protocol):
-    def supports(self, url: str) -> bool: return False
-    def download(self, url: str) -> DownloadResult: pass
+class Source(Protocol):
+    def supports(self, url: str) -> bool: ...
+    def download(self, url: str) -> DownloadResult: ...
 
 
 class YoutubeSource:

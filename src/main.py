@@ -4,7 +4,7 @@ from yt_dlp.utils import DownloadError
 import utils
 
 
-DOWNLOADERS: list[utils.BaseSource] = [
+DOWNLOADERS: list[utils.Source] = [
     utils.YoutubeSource(),
     utils.SoundcloudSource(),
     utils.VkSource()
@@ -29,7 +29,10 @@ def download(url: str = ""):
         for downloader in DOWNLOADERS:
             if (downloader.supports(url)):
                 res = downloader.download(url)
-                utils.set_metainfo(res)
+
+                try: utils.set_metainfo(res)
+                except: pass
+
                 print("[DOWNLOAD COMPLETE]:", res.title, "->", res.path)
                 return
         print("URL is not supported yet :(")
@@ -89,4 +92,5 @@ def main():
         print(f'Error occured: "{str(e)}"')
 
 
-main()
+if __name__ == "__main__":
+    main()
