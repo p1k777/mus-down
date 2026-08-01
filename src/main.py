@@ -1,5 +1,7 @@
 import argparse
+import sys
 from yt_dlp.utils import DownloadError
+from mutagen.id3 import error
 
 import utils
 
@@ -11,14 +13,15 @@ DOWNLOADERS: list[utils.Source] = [
 ]
 
 
-def finish(code: int = 0):
+def finish(code: int = 0) -> None:
     print("[FINISHED]")
-    exit(code)
+    sys.exit(code)
 
 
-def download(url: str = ""):
+def download(url: str = "") -> None:
     if not url:
         url = input("URL: ")
+        if not url: return
 
         if url.lower() == "q" or url.lower() == "quit":
             finish()
@@ -31,19 +34,20 @@ def download(url: str = ""):
                 res = downloader.download(url)
 
                 try: utils.set_metainfo(res)
-                except: pass
+                except error as e:
+                    print(f"Couldn't customize title and artists due to ID3 error: '{str(e)}'")
 
                 print("[DOWNLOAD COMPLETE]:", res.title, "->", res.path)
                 return
         print("URL is not supported yet :(")
     except DownloadError as e:
-        print("Can not download this track due to error, try another service or try again later")
+        print(f"Can't download this track due to error: '{str(e)}'\nTry another service or try again later")
     except Exception as e:
-            print(f'Error occured: "{str(e)}"')
+        print(f'Error occured: "{str(e)}"')
 
 
 
-def main():
+def main() -> None:
     parser = argparse.ArgumentParser()
 
     parser.add_argument(
@@ -82,6 +86,8 @@ def main():
 
             for url in lines:
                 url = url.strip()
+                if not url: continue
+
                 download(url)
 
             finish()

@@ -25,7 +25,7 @@ class DownloadResult:
     path: str
 
 
-def set_metainfo(result: DownloadResult):
+def set_metainfo(result: DownloadResult) -> None:
     title = result.title
     artists = result.artists
     path = result.path
