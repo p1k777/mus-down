@@ -35,6 +35,8 @@ Mac:
 brew install ffmpeg
 ```
 
+- `git` is also required to install the VK-compatible yt-dlp fork
+
 ## Usage
 
 The program is not pre-compiled, there is only the source code, but the use is not difficult (you can use the standard python interpreter)
@@ -48,7 +50,7 @@ python src/main.py [-h] [-u URL] [--input INPUT] [-o OUTPUT]
 - `--input` – set file path that must contain URLs (1 line = 1 url)
 - `-o, --output` – set downloads folder
 
-**Important:** `--url` and `--input` are mutually exclusive (if both are specified, a branch with `--url` will be executed), if no argument is specified, interactive mode will be launched (each URL is entered separately), to exit the intercative mode, enter `QUIT` or `Q` in an arbitrary case in the URL field.
+**Important:** If both --url and --input are specified, --url takes precedence, if neither are specified, interactive mode will be launched (each URL is entered separately), to exit the intercative mode, enter `QUIT` or `Q` in an arbitrary case in the URL field.
 
 ## Examples
 
@@ -78,4 +80,4 @@ python src/main.py
 ```
 then just insert URL into field URL!
 
-[^1]: An unofficial unstable fork was used for VK
+[^1]: VK support requires an unofficial yt-dlp fork and may be unstable.
