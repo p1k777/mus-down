@@ -4,15 +4,35 @@ An incredibly lightweight CLI utility for downloading music from the Internet. S
 
 ## Requirements
 
-- `dataclasses`
-- `typing`
-- `argparse`
+### Python libs
+
 - `yt-dlp`
 - `mutagen`
 
-They are installed using `pip`:
+Installed via `pip`:
 ```
-pip install [lib]
+python -m pip install mutagen yt-dlp
+```
+If VK source support required use
+```
+python -m pip install mutagen "yt-dlp @ git+https://github.com/DarkCat09/yt-dlp.git@vkmusic"
+```
+
+### Other
+
+- `ffmpeg`:
+
+Ubuntu:
+```
+sudo apt install ffmpeg
+```
+Windows:
+```
+winget install --id Gyan.FFmpeg
+```
+Mac:
+```
+brew install ffmpeg
 ```
 
 ## Usage
@@ -20,7 +40,7 @@ pip install [lib]
 The program is not pre-compiled, there is only the source code, but the use is not difficult (you can use the standard python interpreter)
 
 ```
-python main.py [-h] [-u URL] [--input INPUT] [-o OUTPUT]
+python src/main.py [-h] [-u URL] [--input INPUT] [-o OUTPUT]
 ```
 **Options:**
 - `-h`, `--help` – display 'help' information
@@ -34,16 +54,16 @@ python main.py [-h] [-u URL] [--input INPUT] [-o OUTPUT]
 
 ### Only one URL
 ```
-python main.py -u 'https://music.youtube.com/watch?v=oxv5WWJ0oAo&si=2TJkSPZGvG5l9Gx8'
+python src/main.py -u 'https://music.youtube.com/watch?v=oxv5WWJ0oAo&si=2TJkSPZGvG5l9Gx8'
 ```
 or
 ```
-python main.py --url 'https://music.youtube.com/watch?v=oxv5WWJ0oAo&si=2TJkSPZGvG5l9Gx8'
+python src/main.py --url 'https://music.youtube.com/watch?v=oxv5WWJ0oAo&si=2TJkSPZGvG5l9Gx8'
 ```
 
 ### List of URLs
 ```
-python main.py --input downloads/urls.txt
+python src/main.py --input downloads/urls.txt
 ```
 `urls.txt`:
 ```
@@ -54,7 +74,7 @@ https://music.youtube.com/watch?v=DmOaxyilm4g&si=HwZd-8O-fcPu08al
 
 ### Interactive mode
 ```
-python main.py
+python src/main.py
 ```
 then just insert URL into field URL!
 
